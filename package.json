@@ -1,0 +1,34 @@
+{
+  "name": "3sc-desktop",
+  "version": "1.0.0",
+  "description": "3 Strand Code's desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --exec electron -- main.js",
+    "dev": "nodemon --exec node -- lib/testDirExists"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:3-strand-code/3sc-desktop.git"
+  },
+  "keywords": [
+    "3 Strand Code",
+    "desktop"
+  ],
+  "author": "3 Strand Code",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/3-strand-code/3sc-desktop/issues"
+  },
+  "homepage": "https://github.com/3-strand-code/3sc-desktop#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0",
+    "nodemon": "^1.8.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "lodash": "^4.3.0",
+    "require-dir": "^0.3.0",
+    "yargs": "^3.32.0"
+  }
+}
