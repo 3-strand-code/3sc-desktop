@@ -26,7 +26,7 @@ exports.fn = (yargs, argv) => {
 /**
  * Verify files or folders exist.
  */
-const pathsExist = (paths, cb) => {
+const pathsExist = (paths) => {
   if (!paths) return
   const found = []
   const notFound = []
@@ -53,6 +53,5 @@ const pathsExist = (paths, cb) => {
     process.exit(1)
   }
 
-  // callback
   return _.isEmpty(notFound)
 }

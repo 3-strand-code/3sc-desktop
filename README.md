@@ -5,7 +5,9 @@
 Clone then:
 
     npm install
-    npm start
+    npm start               # start electron app
+                            # or
+    npm run dev             # start wip assignment system
 
 Test the cli:
 

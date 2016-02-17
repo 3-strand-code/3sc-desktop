@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "nodemon --exec electron -- main.js",
-    "dev": "nodemon --exec node -- lib/testDirExists"
+    "dev": "nodemon --exec node -- assignments"
   },
   "repository": {
     "type": "git",
@@ -26,9 +26,11 @@
     "nodemon": "^1.8.1"
   },
   "dependencies": {
+    "bluebird": "^3.3.1",
     "chalk": "^1.1.1",
     "lodash": "^4.3.0",
     "require-dir": "^0.3.0",
+    "shelljs": "^0.6.0",
     "yargs": "^3.32.0"
   }
 }
