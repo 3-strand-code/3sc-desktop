@@ -4,8 +4,9 @@
   "description": "3 Strand Code's desktop app",
   "main": "main.js",
   "scripts": {
+    "babel-node": "babel-node",
     "start": "nodemon --exec electron -- main.js",
-    "dev": "nodemon --exec node -- assignments"
+    "dev": "nodemon --exec babel-node -- dev.js"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,15 @@
   },
   "homepage": "https://github.com/3-strand-code/3sc-desktop#readme",
   "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-stage-1": "^6.5.0",
     "electron-prebuilt": "^0.36.0",
     "nodemon": "^1.8.1"
   },
   "dependencies": {
+    "babel-plugin-add-module-exports": "^0.1.2",
     "bluebird": "^3.3.1",
     "chalk": "^1.1.1",
     "lodash": "^4.3.0",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk')
-const _ = require('lodash')
+import chalk from 'chalk'
+import _ from 'lodash'
 
 const INDENT = ' '
 
@@ -16,4 +16,4 @@ log.warn = (...args) => log.apply(log, [INDENT, chalk.yellow('!!'), ...args])
 // command logs
 log.commandError = (yargs, message) => console.log('Error:', message, '\n\n', yargs.help())
 
-module.exports = log
+export default log

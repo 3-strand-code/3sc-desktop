@@ -16,3 +16,9 @@ Test the cli:
 Example:
 
     node --harmony cli exists --paths assignments README.md
+
+# TODO
+- detect ssh keys
+
+- use shelljs for cross platform support
+- use shell.test() for dir/file/etc checks

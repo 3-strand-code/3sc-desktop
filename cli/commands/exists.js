@@ -2,7 +2,7 @@
 
 const _ = require('lodash')
 const fs = require('fs')
-const log = require('../utils/log')
+const log = require('.././log')
 
 exports.description = 'assert directories exists'
 

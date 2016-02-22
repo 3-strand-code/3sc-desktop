@@ -2,7 +2,7 @@
 
 var _ = require('lodash')
 const commands = require('require-dir')('./commands')
-const log = require('./utils/log')
+const log = require('././log')
 const yargs = require('yargs')
 
 yargs
