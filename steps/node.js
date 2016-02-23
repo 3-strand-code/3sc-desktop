@@ -4,6 +4,7 @@ const node = {}
 
 node.install = () => ({
   title: 'Install Node.js',
+  instructions: 'node-install.md',
   check: () => verify.node.exists(),
 })
 

@@ -2,6 +2,7 @@ import verify from './../lib/verify'
 import steps from '../steps'
 
 const assignment = {
+  uid: 'setup-a-web-app-project-1',
   title: 'Setup a web app project',
   steps: [
     steps.git.init(),

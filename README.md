@@ -18,7 +18,12 @@ Example:
     node --harmony cli exists --paths assignments README.md
 
 # TODO
-- detect ssh keys
+- grade method should generate assignment result json
+- steps should include path to instructions markdown file
+- build out other sexy shopping list steps
 
-- use shelljs for cross platform support
-- use shell.test() for dir/file/etc checks
+**ICEBOX**
+
+- drop in web app
+- in app terminal, consider react-blessed
+- assignments should have path/topic/course ids for organizing

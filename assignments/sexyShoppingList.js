@@ -4,6 +4,7 @@ import setupAppProject from './setupAppProject'
 import setupYourSystem from './setupYourSystem'
 
 const assignment = {
+  uid: 'sexy-shopping-list-1',
   title: 'Sexy Shopping List',
   prereqs: [
     setupYourSystem,
