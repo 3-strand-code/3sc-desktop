@@ -13,15 +13,8 @@ const assignment = {
       title: 'Create an index.html file in /app',
       check: () => verify.fileExists('app/index.html'),
     },
-    {
-      title: 'Initialize npm',
-      check: () => verify.fileExists('package.json'),
-    },
+    steps.npm.init(),
     steps.git.ignore(),
-    {
-      title: 'Add a README.md',
-      check: () => verify.fileExists('README.md'),
-    },
   ],
 }
 

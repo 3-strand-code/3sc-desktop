@@ -10,6 +10,14 @@ const assignment = {
     setupAppProject,
   ],
   steps: [
+    {
+      title: 'Add a README.md',
+      check: () => verify.fileExists('README.md'),
+    },
+    {
+      title: 'Create index.html',
+      check: () => verify.fileExists('index.html'),
+    },
     // TODO Redirect root index.html to build/index.html',
   ],
 }
