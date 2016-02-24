@@ -18,7 +18,6 @@ Example:
     node --harmony cli exists --paths assignments README.md
 
 # TODO
-- grade method should generate assignment result json
 - steps should include path to instructions markdown file
 - build out other sexy shopping list steps
 
