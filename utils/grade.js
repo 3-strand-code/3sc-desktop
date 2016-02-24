@@ -1,17 +1,24 @@
 import _ from 'lodash'
 import verify from '../lib/verify'
+import invariant from 'invariant'
 
-const grade = (assignment) => {
-  // make a new object so we don't mutate the original assignment
-  const graded = {...assignment}
+const grade = (assignment, dir) => {
+  invariant(dir, 'dir is required')
 
   // prereqs
-  _.each(graded.prereqs, grade)
+  _.each(assignment.prereqs, (prereq) => grade(prereq, dir))
 
   // steps
-  _.each(graded.steps, step => step.check = step.check())
+  assignment.steps = _.map(assignment.steps, (step) => {
+    const _step = _.isFunction(step) ? step(dir) : step
+    _step.check = _step.check(dir)
+    return _step
+  })
 
-  return graded
+  return {
+    dir,
+    assignment,
+  }
 }
 
 export default grade

@@ -7,7 +7,14 @@ const INDENT = ' '
 
 // basic log
 const log = (...args) => console.log.apply(console, [INDENT, ...args])
-log.title = (title) => console.log(`\n${_.padEnd(`- ${title} `, 60, '-')}\n`)
+log.title = (title) => {
+  log(_.padEnd(`== ${title} `, 60, '='))
+  log()
+}
+log.heading = (heading) => {
+  log(heading)
+  log()
+}
 
 // status logs
 log.pass = (...args) => log.apply(log, [INDENT, chalk.green('✔'), ...args])

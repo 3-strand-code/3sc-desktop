@@ -15,11 +15,14 @@ export const mocha = (graded) => {
     )
   }
 
+  // meta
+  log.heading(`Dir: ${graded.dir}`)
+
   // prereqs
-  _.each(graded.prereqs, reportAssignment)
+  _.each(graded.assignment.prereqs, reportAssignment)
 
   // assignment
-  reportAssignment(graded)
+  reportAssignment(graded.assignment)
 }
 
 /**

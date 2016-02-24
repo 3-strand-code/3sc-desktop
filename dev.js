@@ -2,9 +2,11 @@ import _ from 'lodash'
 import log from './utils/log'
 import grade from './utils/grade'
 import * as reporters from './utils/reporters'
-import sexyShoppingList from './assignments/sexyShoppingList'
+import assignments from './assignments'
+import path from 'path'
 
-const graded = grade(sexyShoppingList)
+const dir = path.resolve(__dirname, '../sexy-shopping-list')
+const graded = grade(assignments.sexyShoppingList, dir)
 
 log.title('JSON Reporter')
 reporters.json(graded)

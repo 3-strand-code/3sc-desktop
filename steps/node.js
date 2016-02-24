@@ -2,10 +2,10 @@ import verify from './../lib/verify'
 
 const node = {}
 
-node.install = () => ({
+node.install = (dir) => ({
   title: 'Install Node.js',
   instructions: 'node-install.md',
-  check: () => verify.node.exists(),
+  check: (dir) => verify.node.exists(),
 })
 
 export default node

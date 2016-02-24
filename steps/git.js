@@ -2,32 +2,32 @@ import verify from './../lib/verify'
 
 const git = {}
 
-git.install = () => ({
+git.install = () => (dir) => ({
   title: 'Install git',
-  check: () => verify.git.exists(),
+  check: (dir) => verify.git.exists(),
 })
 
 // TODO config.username and config.email steps
 
 // TODO accept items to ignore
-git.ignore = () => ({
+git.ignore = () => (dir) => ({
   title: 'Add .gitignore',
-  check: () => verify.fileExists('.gitignore'),
+  check: (dir) => verify.fileExists('.gitignore', dir),
 })
 
-git.init = () => ({
+git.init = () => (dir) => ({
   title: 'Initialize a git repo',
-  check: () => verify.git.repo.exists(),
+  check: (dir) => verify.git.repo.exists(dir),
 })
 
-git.createRemote = (name) => ({
+git.createRemote = (name) => (dir) => ({
   title: `Create a git ${name} remote`,
-  check: () => verify.git.remote.exists(remote),
+  check: (dir) => verify.git.remote.exists(remote, dir),
 })
 
-git.useSSH = (remote) => ({
+git.useSSH = (remote) => (dir) => ({
   title: `Create a git remote named ${remote}`,
-  check: () => verify.git.remote.isSSH(remote),
+  check: (dir) => verify.git.remote.isSSH(remote, dir),
 })
 
 export default git

@@ -8,11 +8,11 @@ const assignment = {
     steps.git.init(),
     {
       title: 'Create an /app directory',
-      check: () => verify.dirExists('app'),
+      check: (dir) => verify.dirExists('app', dir),
     },
     {
       title: 'Create an index.html file in /app',
-      check: () => verify.fileExists('app/index.html'),
+      check: (dir) => verify.fileExists('app/index.html', dir),
     },
     steps.npm.init(),
     steps.git.ignore(),

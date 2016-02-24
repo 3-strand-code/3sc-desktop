@@ -2,14 +2,14 @@ import verify from './../lib/verify'
 
 const npm = {}
 
-npm.install = () => ({
+npm.install = (dir) => ({
   title: 'Install NPM (comes with node.js)',
-  check: () => verify.npm.exists(),
+  check: (dir) => verify.npm.exists(),
 })
 
-npm.init = () => (    {
+npm.init = (dir) => (    {
   title: 'Initialize npm',
-  check: () => verify.fileExists('package.json'),
+  check: (dir) => verify.fileExists('package.json', dir),
 })
 
 export default npm

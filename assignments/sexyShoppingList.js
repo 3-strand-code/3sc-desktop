@@ -13,11 +13,11 @@ const assignment = {
   steps: [
     {
       title: 'Add a README.md',
-      check: () => verify.fileExists('README.md'),
+      check: (dir) => verify.fileExists('README.md', dir),
     },
     {
       title: 'Create index.html',
-      check: () => verify.fileExists('index.html'),
+      check: (dir) => verify.fileExists('index.html', dir),
     },
     // TODO Redirect root index.html to build/index.html',
   ],
