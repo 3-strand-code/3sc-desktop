@@ -6,5 +6,8 @@ import sexyShoppingList from './assignments/sexyShoppingList'
 
 const graded = grade(sexyShoppingList)
 
+log.title('JSON Reporter')
 reporters.json(graded)
+
+log.title('Mocha Reporter')
 reporters.mocha(graded)
