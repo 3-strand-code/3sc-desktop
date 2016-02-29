@@ -1,5 +1,4 @@
 import sh from 'shelljs'
-import fs from 'fs'
 import path from 'path'
 
 const verify = {}
@@ -8,29 +7,30 @@ const verify = {}
 // Low level
 // ------------------------------------
 
-// File System
-
 /**
  * Verify path is a directory.
- * @param relPath
- * @param dir
+ * @param {String} relPath A relative path in `cwd`.
+ * @param {String} cwd Current working directory.
+ * @returns {Boolean}
  */
-verify.dirExists = (relPath, dir = __dirname) => {
-  return sh.test('-d', path.resolve(dir, relPath))
+verify.dirExists = (relPath, cwd = __dirname) => {
+  return sh.test('-d', path.resolve(cwd, relPath))
 }
 
 /**
  * Verify path is a file.
- * @param relPath
- * @param dir
+ * @param {String} relPath A relative path in `cwd`.
+ * @param {String} cwd Current working directory.
+ * @returns {Boolean}
  */
-verify.fileExists = (relPath, dir = __dirname) => {
-  return sh.test('-f', path.resolve(dir, relPath))
+verify.fileExists = (relPath, cwd = __dirname) => {
+  return sh.test('-f', path.resolve(cwd, relPath))
 }
 
 /**
  * Verify a cli is available.
- * @param {String} command Command
+ * @param {String} command Shell command to verify exists.
+ * @returns {Boolean}
  */
 verify.cliExists = (command) => !!sh.which(command)
 
@@ -43,13 +43,13 @@ verify.cliExists = (command) => !!sh.which(command)
 verify.git = {
   exists: () => verify.cliExists('git'),
   remote: {
-    exists: (remote, dir = __dirname) => {
-      sh.cd(dir)
+    exists: (remote, cwd = __dirname) => {
+      sh.cd(cwd)
       const remotes = sh.exec(`git remote`).stdout
       return remotes.includes(remote)
     },
-    isSSH: (remote, dir = __dirname) => {
-      sh.cd(dir)
+    isSSH: (remote, cwd = __dirname) => {
+      sh.cd(cwd)
       const sshRegEx = /git@github\.com:.*\/.*\.git/
       const remoteUrl = sh.exec(`git config --list remote.${remote}.url`).stdout
       return sshRegEx.test(remoteUrl)
@@ -59,8 +59,8 @@ verify.git = {
   // - validate username and email are set
   // - validate push.default, simple:
   repo: {
-    exists: (dir = __dirname) => verify.dirExists('.git', dir),
-  }
+    exists: (cwd = __dirname) => verify.dirExists('.git', cwd),
+  },
 }
 
 // Node

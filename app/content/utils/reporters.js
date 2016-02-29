@@ -5,7 +5,7 @@ const reporters = {}
 
 /**
  * Log mocha inspired results to the console.
- * @param graded
+ * @param {{}} graded The result of a grade(assignment, dir) call.
  */
 reporters.mocha = (graded) => {
   const reportAssignment = (prereq) => {
@@ -29,10 +29,10 @@ reporters.mocha = (graded) => {
 
 /**
  * Log formatted JSON.
- * @param graded
+ * @param {{}} graded The result of a grade(assignment, dir) call.
  */
 reporters.json = (graded) => {
-  return log(JSON.stringify(graded, null, 2))
+  log(JSON.stringify(graded, null, 2))
 }
 
 export default reporters

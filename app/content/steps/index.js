@@ -1,3 +1,14 @@
-import requireDir from 'require-dir'
+import path from 'path'
 
-export default requireDir()
+const exported = {}
+// require all files in this directory, except for index.js
+const context = require.context('./', false, /\.js$/)
+
+context
+  .keys()
+  .forEach(key => {
+    if (key.includes('/index.js')) return
+    exported[path.basename(key, '.js')] = context(key)
+  })
+
+export default exported

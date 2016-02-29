@@ -1,19 +1,19 @@
-import verify from '../lib/verify'
+import { verify } from '../lib'
 import steps from '../steps'
 
 const assignment = {
-  uid: 'setup-a-web-app-project-1',
   title: 'Setup a web app project',
+  visible: false,
   steps: [
     steps.git.init(),
-    {
+    (dir) => ({
       title: 'Create an /app directory',
-      check: (dir) => verify.dirExists('app', dir),
-    },
-    {
+      check: () => verify.dirExists('app', dir),
+    }),
+    (dir) => ({
       title: 'Create an index.html file in /app',
-      check: (dir) => verify.fileExists('app/index.html', dir),
-    },
+      check: () => verify.fileExists('app/index.html', dir),
+    }),
     steps.npm.init(),
     steps.git.ignore(),
   ],

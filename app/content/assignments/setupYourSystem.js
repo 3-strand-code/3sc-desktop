@@ -1,10 +1,11 @@
-import verify from '../lib/verify'
 import steps from '../steps'
 
 const assignment = {
-  uid: 'setup-your-system-1',
   title: 'Setup Your System',
+  visible: true,
   steps: [
+    // TODO: install WebStorm
+    // TODO: make some ~/src dir // project dir
     steps.git.install(),
     steps.node.install(),
   ],

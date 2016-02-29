@@ -1,24 +1,27 @@
-import verify from '../lib/verify'
-import steps from '../steps'
-import setupAppProject from './setupAppProject'
+import { verify } from '../lib'
 import setupYourSystem from './setupYourSystem'
+import setupAppProject from './setupAppProject'
 
+console.log(
+  setupYourSystem,
+  setupAppProject
+)
 const assignment = {
-  uid: 'sexy-shopping-list-1',
   title: 'Sexy Shopping List',
+  visible: true,
   prereqs: [
     setupYourSystem,
     setupAppProject,
   ],
   steps: [
-    {
+    (dir) => ({
       title: 'Add a README.md',
-      check: (dir) => verify.fileExists('README.md', dir),
-    },
-    {
+      check: () => verify.fileExists('README.md', dir),
+    }),
+    (dir) => ({
       title: 'Create index.html',
-      check: (dir) => verify.fileExists('index.html', dir),
-    },
+      check: () => verify.fileExists('index.html', dir),
+    }),
     // TODO Redirect root index.html to build/index.html',
   ],
 }
