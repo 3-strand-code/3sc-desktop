@@ -14,7 +14,7 @@ export default class Step extends Component {
   render() {
     const { title, check, instructions } = this.props
     const iconClasses = cx('circular icon', {
-      'green check': check,
+      'inverted green check': check,
       'grey minus': !check,
     })
     return (

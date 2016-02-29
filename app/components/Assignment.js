@@ -39,7 +39,15 @@ export default class Assignment extends Component {
     const graded = grade(this.props, resolvedDir)
 
     const prereqSteps = _.map(graded.prereqs, prereq => {
-      getSteps(prereq.steps)
+      const steps = getSteps(prereq.steps)
+      return (
+        <div>
+          <Header className='center aligned sub'>{prereq.title}</Header>
+          <p>
+            {steps}
+          </p>
+        </div>
+      )
     })
     const assignmentSteps = getSteps(graded.steps)
 
@@ -50,11 +58,15 @@ export default class Assignment extends Component {
         <div>
           <small>{resolvedDir}</small>
         </div>
+
         <Header>Prereqs</Header>
         {prereqSteps}
+
         <Header>Steps</Header>
         {assignmentSteps}
+
         <Divider className='hidden section' />
+
         <Message className='small'>
           Graded Assignment
           <pre>{JSON.stringify(graded, null, 2)}</pre>
