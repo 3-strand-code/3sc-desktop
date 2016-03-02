@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "3 Strand Code's desktop app",
   "productName": "3StrandCode",
+  "companyName": "3 Strand Code",
   "main": "main.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.production.babel.js --progress --profile --colors",
     "hot:server": "DEBUG=3sc* node server.js",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
