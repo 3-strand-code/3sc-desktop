@@ -2,7 +2,7 @@ import _ from 'lodash'
 import autobind from 'autobind-decorator'
 import path from 'path'
 import React, { Component, PropTypes } from 'react'
-import { Divider, Header, Input, Message } from 'stardust'
+import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
 
 import { grade } from '../content/utils'
 import Step from './Step'
@@ -38,15 +38,17 @@ export default class Assignment extends Component {
     const { dir, resolvedDir } = this.state
     const graded = grade(this.props, resolvedDir)
 
-    const prereqSteps = _.map(graded.prereqs, prereq => {
+    const prereqSteps = _.map(graded.prereqs, (prereq, i) => {
       const steps = getSteps(prereq.steps)
       return (
-        <div>
-          <Header className='center aligned sub'>{prereq.title}</Header>
-          <p>
-            {steps}
-          </p>
-        </div>
+        <Segments key={i}>
+          <Segment>
+            <Header.H4 className=''>
+              <span><i className='book icon' /> {prereq.title}</span>
+            </Header.H4>
+          </Segment>
+          {steps}
+        </Segments>
       )
     })
     const assignmentSteps = getSteps(graded.steps)

@@ -13,12 +13,15 @@ export default class Step extends Component {
 
   render() {
     const { title, check, instructions } = this.props
-    const iconClasses = cx('circular icon', {
-      'inverted green check': check,
-      'grey minus': !check,
+    const iconClasses = cx({
+      'green check': check,
+      'grey circle outline': !check,
+    }, 'large icon')
+    const segmentClasses = cx({
+      'secondary': check,
     })
     return (
-      <Segment>
+      <Segment className={segmentClasses}>
         <i className={iconClasses} /> {title}
         <p>
           {/* TODO render markdown: marked(instructions) */}
