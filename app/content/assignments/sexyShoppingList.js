@@ -2,10 +2,6 @@ import { verify } from '../lib'
 import setupYourSystem from './setupYourSystem'
 import setupAppProject from './setupAppProject'
 
-console.log(
-  setupYourSystem,
-  setupAppProject
-)
 const assignment = {
   title: 'Sexy Shopping List',
   visible: true,
