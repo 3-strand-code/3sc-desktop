@@ -2,6 +2,7 @@
 'use strict'
 
 const electron = require('electron')
+const pkg = require('./package.json')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -12,7 +13,12 @@ let menu
 let template
 let mainWindow = null
 
-crashReporter.start()
+crashReporter.start({
+  productName: pkg.productName,
+  companyName: pkg.companyName,
+  submitURL: '',
+  autoSubmit: true,
+})
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
