@@ -1,6 +1,6 @@
 import sh from 'shelljs'
 import path from 'path'
-import cp from 'child_process'
+import * as shell from './shell'
 
 const verify = {}
 
@@ -33,16 +33,7 @@ verify.fileExists = (relPath, cwd = __dirname) => {
  * @param {String} command Shell command to verify exists.
  * @returns {Boolean}
  */
-verify.cliExists = (command) => {
-  console.log('CLI Exists:')
-  console.log('env', process.env)
-  cp.exec('which git', { stdio: 'inherit' }, (...args) => {
-    console.log('exec', args)
-  })
-  const which = sh.which(command)
-  console.log('which', which)
-  return !!which
-}
+verify.cliExists = (command) => !!shell.which('git')
 
 // ------------------------------------
 // High level

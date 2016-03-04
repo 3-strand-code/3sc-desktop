@@ -4,7 +4,7 @@ import path from 'path'
 import React, { Component, PropTypes } from 'react'
 import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
 
-import { grade } from '../content/utils'
+import { grade } from '../content/lib'
 import Step from './Step'
 
 const getSteps = (steps) => _.map(steps, (step, i) => <Step key={i} { ...step } />)
