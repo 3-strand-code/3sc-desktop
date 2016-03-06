@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import autobind from 'autobind-decorator'
+import cx from 'classnames'
 import path from 'path'
 import React, { Component, PropTypes } from 'react'
 import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
@@ -39,12 +40,25 @@ export default class Assignment extends Component {
     const graded = grade(this.props, resolvedDir)
 
     const prereqSteps = _.map(graded.prereqs, (prereq, i) => {
-      const steps = getSteps(prereq.steps)
+      const isComplete = _.every(prereq.steps, 'check')
+      const steps = isComplete ? null : getSteps(prereq.steps)
+      const headerIconClasses = cx({
+        'green checkmark box': isComplete,
+        'square outline': !isComplete,
+      }, 'icon')
+      const segmentStyle = {
+        transition: 'border 1s, box-shadow 1s',
+        ...(!isComplete ? null : {
+          borderColor: 'transparent',
+          boxShadow: 'none',
+        }),
+      }
       return (
-        <Segments key={i}>
-          <Segment>
-            <Header.H4 className=''>
-              <span><i className='book icon' /> {prereq.title}</span>
+        <Segments key={i} style={segmentStyle}>
+          <Segment style={segmentStyle}>
+            <Header.H4>
+              <i className={headerIconClasses} style={{ float: 'left' }} />
+              {prereq.title}
             </Header.H4>
           </Segment>
           {steps}

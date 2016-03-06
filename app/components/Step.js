@@ -16,7 +16,7 @@ export default class Step extends Component {
     const iconClasses = cx({
       'green check': check,
       'grey circle outline': !check,
-    }, 'large icon')
+    }, 'icon')
     const segmentClasses = cx({
       'secondary': check,
     })
