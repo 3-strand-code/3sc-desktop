@@ -61,10 +61,10 @@ export default class Assignment extends Component {
           <small>{resolvedDir}</small>
         </div>
 
-        <Header>Prereqs</Header>
+        <Header.H2 className='center aligned'>Prereqs</Header.H2>
         {prereqSteps}
 
-        <Header>Steps</Header>
+        <Header.H2 className='center aligned'>Steps</Header.H2>
         {assignmentSteps}
 
         <Divider className='hidden section' />

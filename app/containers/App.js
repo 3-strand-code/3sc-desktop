@@ -8,6 +8,9 @@ export default class App extends Component {
   }
 
   render() {
+    const scrollBarPadding = {
+      paddingRight: '1em',
+    }
     return (
       <div>
         <Menu className='top attached'>
@@ -21,7 +24,9 @@ export default class App extends Component {
             Profile
           </Link>
         </Menu>
-        {this.props.children}
+        <div style={scrollBarPadding}>
+          {this.props.children}
+        </div>
         {(() => {
           if (process.env.NODE_ENV !== 'production') {
             const DevTools = require('./DevTools')

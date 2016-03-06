@@ -30,24 +30,16 @@ export default class Assignments extends Component {
       ))
 
     return (
-      <div style={{ display: 'flex' }}>
-        <div style={{ flex: '0 0 200' }}>
-          <Grid className='one column padded'>
-            <Grid.Column>
-              <Menu className='secondary vertical fluid pointing'>
-                {assignmentItems}
-              </Menu>
-            </Grid.Column>
-          </Grid>
-        </div>
-        <div style={{ flex: '1' }}>
-          <Grid className='one column padded'>
-            <Grid.Column>
-              <Assignment { ...assignment } />
-            </Grid.Column>
-          </Grid>
-        </div>
-      </div>
+      <Grid className='equal width padded'>
+        <Grid.Column style={{ flex: '0 0 13rem' }}>
+          <Menu className='secondary vertical fluid pointing'>
+            {assignmentItems}
+          </Menu>
+        </Grid.Column>
+        <Grid.Column>
+          <Assignment { ...assignment } />
+        </Grid.Column>
+      </Grid>
     )
   }
 }
