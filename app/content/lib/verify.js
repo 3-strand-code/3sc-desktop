@@ -1,6 +1,6 @@
 import sh from 'shelljs'
 import path from 'path'
-import * as shell from './shell'
+import shx from './shx'
 
 const verify = {}
 
@@ -33,7 +33,7 @@ verify.fileExists = (relPath, cwd = __dirname) => {
  * @param {String} command Shell command to verify exists.
  * @returns {Boolean}
  */
-verify.cliExists = (command) => !!shell.which('git')
+verify.cliExists = (command) => !!shx('which git')
 
 // ------------------------------------
 // High level
