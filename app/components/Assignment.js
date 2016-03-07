@@ -32,6 +32,7 @@ export default class Assignment extends Component {
       resolvedDir,
     }
 
+    // TODO: Interval is for POC only, should use some kind of watch functionality
     this.gradeInterval = setInterval(this.grade, 1000)
   }
 
