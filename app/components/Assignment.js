@@ -10,6 +10,8 @@ import Step from './Step'
 
 const getSteps = (steps) => _.map(steps, (step, i) => <Step key={i} { ...step } />)
 
+const REPO_DIR = path.resolve('..')
+
 export default class Assignment extends Component {
   static propTypes = {
     title: PropTypes.string,
@@ -20,24 +22,40 @@ export default class Assignment extends Component {
 
   constructor(props, context) {
     super(props, context)
-    const DEFAULT_DIR = '../sexy-shopping-list'
+    const dir = 'sexy-shopping-list'
+    const resolvedDir = path.resolve(REPO_DIR, dir)
+    const graded = grade(this.props, resolvedDir)
+
     this.state = {
-      dir: DEFAULT_DIR,
-      resolvedDir: path.resolve(DEFAULT_DIR),
+      dir,
+      graded,
+      resolvedDir,
     }
+
+    this.gradeInterval = setInterval(this.grade, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.gradeInterval)
   }
 
   @autobind
   handleChangeDirectory(e) {
     this.setState({
       dir: e.target.value,
-      resolvedDir: path.resolve(e.target.value),
+      resolvedDir: path.resolve(REPO_DIR, e.target.value),
+    })
+  }
+
+  @autobind
+  grade() {
+    this.setState({
+      graded: grade(this.props, this.state.resolvedDir),
     })
   }
 
   render() {
-    const { dir, resolvedDir } = this.state
-    const graded = grade(this.props, resolvedDir)
+    const { dir, resolvedDir, graded } = this.state
 
     const prereqSteps = _.map(graded.prereqs, (prereq, i) => {
       const isComplete = _.every(prereq.steps, 'check')
@@ -46,16 +64,9 @@ export default class Assignment extends Component {
         'green checkmark box': isComplete,
         'square outline': !isComplete,
       }, 'icon')
-      const segmentStyle = {
-        transition: 'border 1s, box-shadow 1s',
-        ...(!isComplete ? null : {
-          borderColor: 'transparent',
-          boxShadow: 'none',
-        }),
-      }
       return (
-        <Segments key={i} style={segmentStyle}>
-          <Segment style={segmentStyle}>
+        <Segments key={i} className='piled'>
+          <Segment>
             <Header.H4>
               <i className={headerIconClasses} style={{ float: 'left' }} />
               {prereq.title}
@@ -65,7 +76,11 @@ export default class Assignment extends Component {
         </Segments>
       )
     })
-    const assignmentSteps = getSteps(graded.steps)
+    const assignmentSteps = (
+      <Segments className='piled'>
+        {getSteps(graded.steps)}
+      </Segments>
+    )
 
     return (
       <div>
