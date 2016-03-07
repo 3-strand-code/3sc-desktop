@@ -65,8 +65,11 @@ export default class Assignment extends Component {
         'green checkmark box': isComplete,
         'square outline': !isComplete,
       }, 'icon')
+      const segmentsClasses = cx({
+        piled: !isComplete,
+      })
       return (
-        <Segments key={i} className='piled'>
+        <Segments key={i} className={segmentsClasses}>
           <Segment>
             <Header.H4>
               <i className={headerIconClasses} style={{ float: 'left' }} />

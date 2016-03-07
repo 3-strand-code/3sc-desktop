@@ -29,6 +29,20 @@ verify.fileExists = (relPath, cwd = __dirname) => {
 }
 
 /**
+ * Verify a file contains the `pattern`.
+ * @param {String} relPath A relative path in `cwd`.
+ * @param {Object} pattern A RegEx pattern to test with the file contents.
+ * @param {String} cwd Current working directory.
+ * @returns {Boolean}
+ */
+verify.fileContains = (relPath, pattern, cwd = __dirname) => {
+  const filePath = path.resolve(cwd, relPath)
+  const contents = sh.cat(filePath).stdout
+  const fileContainsPattern = pattern.test(contents)
+  return fileContainsPattern
+}
+
+/**
  * Verify a cli is available.
  * @param {String} command Shell command to verify exists.
  * @returns {Boolean}

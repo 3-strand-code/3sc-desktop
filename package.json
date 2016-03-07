@@ -98,6 +98,7 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "classnames": "^2.2.3",
     "electron-debug": "^0.5.1",
+    "escape-string-regexp": "^1.0.5",
     "font-awesome": "^4.4.0",
     "invariant": "^2.2.0",
     "jquery": "^2.2.1",

@@ -1,4 +1,5 @@
 import { verify } from '../lib'
+import escapeStringRegex from 'escape-string-regexp'
 
 const git = {}
 
@@ -9,9 +10,15 @@ git.install = () => (dir) => ({
 
 // TODO config.username and config.email steps
 
-// TODO accept items to ignore
-git.ignore = () => (dir) => ({
-  title: 'Add .gitignore',
+git.ignore = (string) => (dir) => (string ? {
+  title: `Add ${string} to .gitignore`,
+  check: () => {
+    const escapedString = escapeStringRegex(string)
+    const regExp = new RegExp(`^${escapedString}$`, 'gm')
+    return verify.fileContains('.gitignore', regExp, dir)
+  },
+} : {
+  title: 'Create a .gitignore file',
   check: () => verify.fileExists('.gitignore', dir),
 })
 

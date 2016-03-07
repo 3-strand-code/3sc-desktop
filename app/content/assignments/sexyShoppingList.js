@@ -1,6 +1,7 @@
 import { verify } from '../lib'
-import setupYourSystem from './setupYourSystem'
 import setupAppProject from './setupAppProject'
+import setupNewProject from './setupNewProject'
+import setupYourSystem from './setupYourSystem'
 import steps from '../steps'
 
 const assignment = {
@@ -8,6 +9,7 @@ const assignment = {
   visible: true,
   prereqs: [
     setupYourSystem,
+    setupNewProject,
     setupAppProject,
   ],
   steps: [
@@ -19,7 +21,6 @@ const assignment = {
       title: 'Create index.html',
       check: () => verify.fileExists('index.html', dir),
     }),
-    // TODO Redirect root index.html to build/index.html',
     steps.npm.installModule('node-sass'),
   ],
 }
