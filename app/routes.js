@@ -4,6 +4,7 @@ import App from './containers/App'
 import HomePage from './containers/HomePage'
 import CounterPage from './containers/CounterPage'
 import AssignmentsPage from './containers/AssignmentsPage'
+import BrowserTestsPage from './containers/BrowserTestsPage'
 import ProfilePage from './containers/ProfilePage'
 
 export default (
@@ -11,6 +12,7 @@ export default (
     <IndexRoute component={HomePage} />
     <Route path='/counter' component={CounterPage} />
     <Route path='/assignments' component={AssignmentsPage} />
+    <Route path='/browser-tests' component={BrowserTestsPage} />
     <Route path='/profile' component={ProfilePage} />
   </Route>
 )

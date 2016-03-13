@@ -20,6 +20,9 @@ export default class App extends Component {
           <Link className='item' to='/assignments'>
             Assignments
           </Link>
+          <Link className='item' to='/browser-tests'>
+            Browser Tests
+          </Link>
           <Link className='item' to='/profile'>
             Profile
           </Link>
