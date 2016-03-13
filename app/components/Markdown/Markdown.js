@@ -12,7 +12,7 @@ export default class Markdown extends Component {
       ...ReactMarkdown.renderers,
       CodeBlock,
     }
-    return (
+    return !this.props.source ? null : (
       <ReactMarkdown
         { ...this.props }
         escapeHtml

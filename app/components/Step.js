@@ -15,9 +15,9 @@ export default class Step extends Component {
     const { title, check, instructions } = this.props
     const iconClasses = cx({
       'green check': check,
-      'grey circle outline': !check,
+      'grey square outline': !check,
     }, 'icon')
-    const segmentClasses = cx('basic', {
+    const segmentClasses = cx({
       'secondary': check,
     })
     return (
