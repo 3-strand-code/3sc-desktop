@@ -10,7 +10,7 @@ import Step from './Step'
 
 const getSteps = (steps) => _.map(steps, (step, i) => <Step key={i} { ...step } />)
 
-const getAssignmentSteps = (assignmentsArray) => _.map(assignmentsArray, (assignment, i) => {
+const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i) => {
   const isComplete = _.every(assignment.steps, 'check')
   const steps = isComplete ? null : getSteps(assignment.steps)
   const headerIconClasses = cx({
@@ -81,8 +81,8 @@ export default class Assignment extends Component {
   render() {
     const { dir, resolvedDir, graded } = this.state
 
-    const prereqSteps = getAssignmentSteps(graded.prereqs)
-    const sectionSteps = getAssignmentSteps(graded.sections)
+    const prereqs = getSections(graded.prereqs)
+    const sections = getSections(graded.sections)
 
     return (
       <div>
@@ -93,10 +93,10 @@ export default class Assignment extends Component {
         </div>
 
         <Header.H2 className='center aligned'>Prereqs</Header.H2>
-        {prereqSteps}
+        {prereqs}
 
         <Header.H2 className='center aligned'>Sections</Header.H2>
-        {sectionSteps}
+        {sections}
 
         <Divider className='hidden section' />
 
