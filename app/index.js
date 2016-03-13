@@ -1,3 +1,7 @@
+import 'semantic-ui-css/semantic.js'
+import 'semantic-ui-css/semantic.css'
+import './app.global.css'
+
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
