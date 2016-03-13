@@ -3,6 +3,7 @@ import autobind from 'autobind-decorator'
 import cx from 'classnames'
 import path from 'path'
 import React, { Component, PropTypes } from 'react'
+import Markdown from './Markdown/Markdown'
 import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
 
 import { grade } from '../content/lib'
@@ -20,6 +21,7 @@ const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i
   const segmentsClasses = cx({
     piled: !isComplete,
   })
+  const description = assignment.description && <Markdown source={assignment.description} />
   return (
     <Segments key={i} className={segmentsClasses}>
       <Segment>
@@ -27,6 +29,7 @@ const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i
           <i className={headerIconClasses} style={{ float: 'left' }} />
           {assignment.title}
         </Header.H4>
+        {description}
       </Segment>
       {steps}
     </Segments>

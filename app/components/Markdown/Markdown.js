@@ -4,7 +4,7 @@ import CodeBlock from './CodeBlock'
 
 export default class Markdown extends Component {
   static propTypes = {
-    source: PropTypes.string.isRequired,
+    source: PropTypes.string,
   }
 
   render() {
