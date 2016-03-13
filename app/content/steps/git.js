@@ -1,10 +1,12 @@
 import { verify } from '../lib'
 import escapeStringRegex from 'escape-string-regexp'
+import gitInstallMD from './git-install.md'
 
 const git = {}
 
 git.install = () => (dir) => ({
   title: 'Install git',
+  description: gitInstallMD,
   check: () => verify.git.exists(),
 })
 
