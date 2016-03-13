@@ -46,7 +46,7 @@ verify.fileContains = (relPath, pattern, cwd = __dirname) => {
  * @param {String} command Shell command to verify exists.
  * @returns {Boolean}
  */
-verify.cliExists = (command) => !!shx('which git')
+verify.cliExists = (command) => !!shx(`which ${command}`)
 
 // ------------------------------------
 // High level
