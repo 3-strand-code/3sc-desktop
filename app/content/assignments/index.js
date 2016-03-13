@@ -2,7 +2,7 @@ import path from 'path'
 
 const exported = {}
 // require all files in this directory, except for index.js
-const context = require.context('./', false, /\.js$/)
+const context = require.context('./', true, /\.js$/)
 
 context
   .keys()

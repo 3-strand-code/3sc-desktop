@@ -1,5 +1,5 @@
-import { verify } from '../lib'
-import steps from '../steps'
+import { verify } from '../../lib'
+import steps from '../../steps'
 
 const assignment = {
   title: 'Setup a new project',
