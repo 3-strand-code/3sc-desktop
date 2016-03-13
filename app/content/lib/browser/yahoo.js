@@ -1,4 +1,4 @@
-const Nightmare = require('nightmare')
+import Nightmare from 'nightmare'
 const nightmare = Nightmare({ show: true })
 
 nightmare

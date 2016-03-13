@@ -15,10 +15,10 @@ export default class BrowserTests extends Component {
 
     browserTest('yahoo')
       .then(res => {
-        this.setState({ ...res, status: 'done' })
+        this.setState({ ...res, status: 'passed' })
       })
       .catch(err => {
-        this.setState({ ...err, status: 'done' })
+        this.setState({ ...err, status: 'failed' })
       })
   }
 
