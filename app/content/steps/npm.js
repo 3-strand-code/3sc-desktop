@@ -1,4 +1,5 @@
 import { verify } from '../lib'
+import npmInitMD from './npm-init.md'
 
 const npm = {}
 
@@ -9,6 +10,7 @@ npm.install = () => (dir) => ({
 
 npm.init = () => (dir) => ({
   title: 'Initialize npm',
+  description: npmInitMD,
   check: () => verify.fileExists('package.json', dir),
 })
 

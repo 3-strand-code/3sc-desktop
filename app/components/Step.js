@@ -24,7 +24,9 @@ export default class Step extends Component {
     const renderedDescription = !check && description && <Markdown source={description} />
     return (
       <Segment className={segmentClasses}>
-        <i className={iconClasses} /> {title}
+        <p>
+          <i className={iconClasses} /> {title}
+        </p>
         {renderedDescription}
       </Segment>
     )
