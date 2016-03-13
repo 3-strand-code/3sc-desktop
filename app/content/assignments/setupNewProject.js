@@ -5,6 +5,10 @@ const assignment = {
   title: 'Setup a new project',
   visible: false,
   steps: [
+    (dir) => ({
+      title: 'Add a README.md',
+      check: () => verify.fileExists('README.md', dir),
+    }),
     steps.npm.init(),
     steps.git.init(),
     steps.git.ignore(),

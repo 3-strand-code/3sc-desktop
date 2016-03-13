@@ -7,6 +7,7 @@ const grade = (assignment, dir) => {
   return {
     ...assignment,
     prereqs: _.map(assignment.prereqs, (prereq) => grade(prereq, dir)),
+    sections: _.map(assignment.sections, (section) => grade(section, dir)),
     steps: _.map(assignment.steps, (step) => {
       const stepForDir = step(dir)
       return {

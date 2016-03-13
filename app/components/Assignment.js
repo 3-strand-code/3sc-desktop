@@ -10,6 +10,29 @@ import Step from './Step'
 
 const getSteps = (steps) => _.map(steps, (step, i) => <Step key={i} { ...step } />)
 
+const getAssignmentSteps = (assignmentsArray) => _.map(assignmentsArray, (assignment, i) => {
+  const isComplete = _.every(assignment.steps, 'check')
+  const steps = isComplete ? null : getSteps(assignment.steps)
+  const headerIconClasses = cx({
+    'green checkmark box': isComplete,
+    'square outline': !isComplete,
+  }, 'icon')
+  const segmentsClasses = cx({
+    piled: !isComplete,
+  })
+  return (
+    <Segments key={i} className={segmentsClasses}>
+      <Segment>
+        <Header.H4>
+          <i className={headerIconClasses} style={{ float: 'left' }} />
+          {assignment.title}
+        </Header.H4>
+      </Segment>
+      {steps}
+    </Segments>
+  )
+})
+
 const REPO_DIR = path.resolve('..')
 
 export default class Assignment extends Component {
@@ -58,33 +81,8 @@ export default class Assignment extends Component {
   render() {
     const { dir, resolvedDir, graded } = this.state
 
-    const prereqSteps = _.map(graded.prereqs, (prereq, i) => {
-      const isComplete = _.every(prereq.steps, 'check')
-      const steps = isComplete ? null : getSteps(prereq.steps)
-      const headerIconClasses = cx({
-        'green checkmark box': isComplete,
-        'square outline': !isComplete,
-      }, 'icon')
-      const segmentsClasses = cx({
-        piled: !isComplete,
-      })
-      return (
-        <Segments key={i} className={segmentsClasses}>
-          <Segment>
-            <Header.H4>
-              <i className={headerIconClasses} style={{ float: 'left' }} />
-              {prereq.title}
-            </Header.H4>
-          </Segment>
-          {steps}
-        </Segments>
-      )
-    })
-    const assignmentSteps = (
-      <Segments className='piled'>
-        {getSteps(graded.steps)}
-      </Segments>
-    )
+    const prereqSteps = getAssignmentSteps(graded.prereqs)
+    const sectionSteps = getAssignmentSteps(graded.sections)
 
     return (
       <div>
@@ -97,8 +95,8 @@ export default class Assignment extends Component {
         <Header.H2 className='center aligned'>Prereqs</Header.H2>
         {prereqSteps}
 
-        <Header.H2 className='center aligned'>Steps</Header.H2>
-        {assignmentSteps}
+        <Header.H2 className='center aligned'>Sections</Header.H2>
+        {sectionSteps}
 
         <Divider className='hidden section' />
 

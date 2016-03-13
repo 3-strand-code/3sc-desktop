@@ -37,9 +37,8 @@ verify.fileExists = (relPath, cwd = __dirname) => {
  */
 verify.fileContains = (relPath, pattern, cwd = __dirname) => {
   const filePath = path.resolve(cwd, relPath)
-  const contents = sh.cat(filePath).stdout
-  const fileContainsPattern = pattern.test(contents)
-  return fileContainsPattern
+  const contents = sh.cat(filePath)
+  return pattern.test(contents)
 }
 
 /**

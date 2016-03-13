@@ -9,19 +9,16 @@ const assignment = {
   visible: true,
   prereqs: [
     setupYourSystem,
+  ],
+  sections: [
     setupNewProject,
     setupAppProject,
-  ],
-  steps: [
-    (dir) => ({
-      title: 'Add a README.md',
-      check: () => verify.fileExists('README.md', dir),
-    }),
-    (dir) => ({
-      title: 'Create index.html',
-      check: () => verify.fileExists('index.html', dir),
-    }),
-    steps.npm.installModule('node-sass'),
+    {
+      title: 'CSS Preprocessor',
+      steps: [
+        steps.npm.installModule('node-sass'),
+      ],
+    },
   ],
 }
 
