@@ -9,11 +9,11 @@ import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
 import { grade } from '../content/lib'
 import Step from './Step'
 
-const getSteps = (steps) => _.map(steps, (step, i) => <Step key={i} { ...step } />)
-
 const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i) => {
   const isComplete = _.every(assignment.steps, 'check')
-  const steps = isComplete ? null : getSteps(assignment.steps)
+  const steps = isComplete ? null : _.map(assignment.steps, (step, i) => (
+    <Step key={i} { ...step } />
+  ))
   const headerIconClasses = cx({
     'green checkmark box': isComplete,
     'square outline': !isComplete,
