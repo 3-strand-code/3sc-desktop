@@ -10,10 +10,9 @@ import { grade } from '../content/lib'
 import Step from './Step'
 
 const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i) => {
-  const isComplete = _.every(assignment.steps, 'check')
-  const steps = isComplete ? null : _.map(assignment.steps, (step, i) => (
-    <Step key={i} { ...step } />
-  ))
+  const { description, steps, title } = assignment
+  const isComplete = _.every(steps, 'check')
+  const renderedSteps = !isComplete && _.map(steps, (step, j) => <Step key={j} { ...step } />)
   const headerIconClasses = cx({
     'green checkmark box': isComplete,
     'square outline': !isComplete,
@@ -21,17 +20,17 @@ const getSections = (assignmentsArray) => _.map(assignmentsArray, (assignment, i
   const segmentsClasses = cx({
     piled: !isComplete,
   })
-  const description = !isComplete && <Markdown source={assignment.description} />
+  const renderedDescription = !isComplete && description && <Markdown source={description} />
   return (
     <Segments key={i} className={segmentsClasses}>
       <Segment>
         <Header.H4>
           <i className={headerIconClasses} style={{ float: 'left' }} />
-          {assignment.title}
+          {title}
         </Header.H4>
-        {description}
+        {renderedDescription}
       </Segment>
-      {steps}
+      {renderedSteps}
     </Segments>
   )
 })
