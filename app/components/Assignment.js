@@ -4,7 +4,7 @@ import cx from 'classnames'
 import path from 'path'
 import React, { Component, PropTypes } from 'react'
 import Markdown from './Markdown/Markdown'
-import { Divider, Header, Input, Message, Segment, Segments } from 'stardust'
+import { Button, Divider, Header, Input, Message, Segment, Segments } from 'stardust'
 
 import { grade } from '../content/lib'
 import Step from './Step'
@@ -80,11 +80,25 @@ export default class Assignment extends Component {
     })
   }
 
+  @autobind
+  toggleGradedJSON() {
+    this.setState({
+      showGraded: !this.state.showGraded,
+    })
+  }
+
   render() {
-    const { dir, resolvedDir, graded } = this.state
+    const { dir, resolvedDir, graded, showGraded } = this.state
 
     const prereqs = getSections(graded.prereqs)
     const sections = getSections(graded.sections)
+
+    const gradedDebug = !showGraded ? null : (
+      <Message className='small'>
+        Graded Assignment
+        <pre>{JSON.stringify(graded, null, 2)}</pre>
+      </Message>
+    )
 
     return (
       <div>
@@ -100,12 +114,10 @@ export default class Assignment extends Component {
         <Header.H2 className='center aligned'>Sections</Header.H2>
         {sections}
 
-        <Divider className='hidden section' />
-
-        <Message className='small'>
-          Graded Assignment
-          <pre>{JSON.stringify(graded, null, 2)}</pre>
-        </Message>
+        <Button className='basic' onClick={this.toggleGradedJSON}>
+          {showGraded ? 'Hide' : 'Show'} JSON
+        </Button>
+        {gradedDebug}
       </div>
     )
   }
