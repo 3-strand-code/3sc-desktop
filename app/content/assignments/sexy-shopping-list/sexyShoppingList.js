@@ -18,7 +18,7 @@ const assignment = {
       title: 'CSS Preprocessor',
       description: cssPreprocessor,
       steps: [
-        steps.npm.installModule('node-sass'),
+        steps.npm.installDevDependency('node-sass'),
       ],
     },
   ],
